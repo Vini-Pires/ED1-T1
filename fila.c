@@ -24,7 +24,7 @@ void removerQuebraLinha(char *texto) {
 }
 
 // Função principal que executa a lógica da fila de músicas
-void filaenzo() {
+void filamusic(Pilha *historico) {
     setbuf(stdout, NULL);
     printf("=====================================\n");
     printf("  Bem-vindo ao SO TRACK BOA!\n");
@@ -39,12 +39,14 @@ void filaenzo() {
         printf("Digite o nome da música %d: ", i + 1);
         fgets(entrada, TAM_BUFFER, stdin);
         removerQuebraLinha(entrada);
-        strncpy(fila[i].nomemusic, entrada, sizeof(fila[i].nomemusic));
+        strncpy(fila[i].nomemusic, entrada, sizeof(fila[i].nomemusic) - 1);
+        fila[i].nomemusic[sizeof(fila[i].nomemusic) - 1] = '\0';
 
         printf("Digite o nome da playlist: ");
         fgets(entrada, TAM_BUFFER, stdin);
         removerQuebraLinha(entrada);
-        strncpy(fila[i].playlist, entrada, sizeof(fila[i].playlist));
+        strncpy(fila[i].playlist, entrada, sizeof(fila[i].playlist) - 1);
+        fila[i].playlist[sizeof(fila[i].playlist) - 1] = '\0';
 
         printf("Digite a prioridade (número inteiro): ");
         scanf("%d", &fila[i].prioridade);
@@ -57,34 +59,39 @@ void filaenzo() {
 
     // Toca a primeira música
     printf("Tocando agora: %s (Prioridade: %d)\n\n", fila[0].nomemusic, fila[0].prioridade);
+    push(historico, fila[0].nomemusic, fila[0].playlist);
 
     // Inserção de nova música na fila
     printf("-- Inserir nova música na fila --\n");
     Musica novaMusica;
+
     printf("Digite o nome da nova música: ");
     fgets(entrada, TAM_BUFFER, stdin);
     removerQuebraLinha(entrada);
-    strncpy(novaMusica.nomemusic, entrada, sizeof(novaMusica.nomemusic));
+    strncpy(novaMusica.nomemusic, entrada, sizeof(novaMusica.nomemusic) - 1);
+    novaMusica.nomemusic[sizeof(novaMusica.nomemusic) - 1] = '\0';
 
     printf("Digite o nome da playlist da nova música: ");
     fgets(entrada, TAM_BUFFER, stdin);
     removerQuebraLinha(entrada);
-    strncpy(novaMusica.playlist, entrada, sizeof(novaMusica.playlist));
+    strncpy(novaMusica.playlist, entrada, sizeof(novaMusica.playlist) - 1);
+    novaMusica.playlist[sizeof(novaMusica.playlist) - 1] = '\0';
 
     printf("Digite a prioridade da nova música: ");
     scanf("%d", &novaMusica.prioridade);
     getchar();
     printf("\n");
 
-    // Insere a nova música na posição 1
+    // Insere a nova música na posição 1 (após a primeira)
     for (int i = quantidadeMusicas; i > 1; i--) {
         fila[i] = fila[i - 1];
     }
     fila[1] = novaMusica;
     quantidadeMusicas++;
 
-    // Toca a próxima música (nova)
+    // Toca a próxima música (nova inserida)
     printf("Próxima na fila: %s (Prioridade: %d)\n\n", fila[1].nomemusic, fila[1].prioridade);
+    push(historico, fila[1].nomemusic, fila[1].playlist);
 
     // Lista as próximas músicas da fila
     printf("Músicas ainda não tocadas:\n");
