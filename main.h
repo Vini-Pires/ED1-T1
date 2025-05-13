@@ -5,11 +5,14 @@
 #include <string.h>
 #include <stdlib.h>
 
+// Tamanho fixo usado para nomes
+#define NOME_TAM 100
+
 // Estrutura que representa uma música
 typedef struct {
-    char nomemusic[100];   // Nome da música
-    char playlist[100];    // Nome da playlist
-    int prioridade;        // Prioridade da música
+    char nomemusic[NOME_TAM];   // Nome da música
+    char playlist[NOME_TAM];    // Nome da playlist
+    int prioridade;             // Prioridade da música
 } Musica;
 
-#endif
+#endif // MAIN_H
