@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.ejs": "html",
+        "random": "c",
+        "pilha.h": "c",
+        "main.h": "c"
+    }
+}

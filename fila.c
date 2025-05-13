@@ -28,7 +28,7 @@ void removerQuebraLinha(char *texto) {
     }
 }
 
-int main() {
+void filaenzo() {
     setbuf(stdout, NULL);
     printf("=====================================\n");
     printf("  Bem-vindo ao SO TRACK BOA!\n");
