@@ -1,13 +1,8 @@
-#include "main.h"
+#include "fila.h"
 #include <stdio.h>
 #include <string.h>
 
-// Número máximo de músicas iniciais
-#define MAX_MUSICAS_INICIAIS 4
-// Tamanho máximo de buffer para leitura de strings
-#define TAM_BUFFER 100
-
-// Função para ordenar as músicas por prioridade (decrescente)
+// Ordena as músicas por prioridade decrescente
 void ordenarPorPrioridade(Musica *lista, int total) {
     for (int i = 0; i < total - 1; i++) {
         for (int j = i + 1; j < total; j++) {
@@ -20,7 +15,7 @@ void ordenarPorPrioridade(Musica *lista, int total) {
     }
 }
 
-// Função para remover o '\n' do final da string
+// Remove o '\n' do final da string
 void removerQuebraLinha(char *texto) {
     size_t tamanho = strlen(texto);
     if (tamanho > 0 && texto[tamanho - 1] == '\n') {
@@ -28,6 +23,7 @@ void removerQuebraLinha(char *texto) {
     }
 }
 
+// Função principal que executa a lógica da fila de músicas
 void filaenzo() {
     setbuf(stdout, NULL);
     printf("=====================================\n");
@@ -95,6 +91,4 @@ void filaenzo() {
     for (int i = 2; i < quantidadeMusicas; i++) {
         printf("  %d. %s (Prioridade: %d)\n", i - 1, fila[i].nomemusic, fila[i].prioridade);
     }
-
-    return 0;
 }
