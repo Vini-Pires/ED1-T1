@@ -4,7 +4,7 @@
  * @authors
  * - Leonardo Tanamura (2614294 - leonardotanamura@alunos.utfpr.edu.br)
  * - Vinicius Pires (ra - you@domain.com)
- * - Enzo Livrari (ra - you@domain.com)
+ * - Enzo Livrari (2552795 - enzolivrari@alunos.utfpr.edu.br)
  * @brief 
  * @version 0.1
  * @date 2025-05-13
