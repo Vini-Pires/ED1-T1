@@ -36,6 +36,7 @@ void filamusic(Pilha *historico) {
 
     // Leitura das músicas iniciais
     for (int i = 0; i < MAX_MUSICAS_INICIAIS; i++) {
+        setbuf(stdin, NULL);
         printf("Digite o nome da música %d: ", i + 1);
         fgets(entrada, TAM_BUFFER, stdin);
         removerQuebraLinha(entrada);

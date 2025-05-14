@@ -35,15 +35,15 @@
          printf("0 - Sair\n");
          printf("Opcão: ");
  
-         do {
+         do{
              setbuf(stdin, NULL);
              scanf("%i", &opcao);
-             if (opcao < 0 || opcao > 4) {
+             if (opcao < 0 || opcao > 4){
                  printf("Você não digitou uma opção válida, tente novamente!\n");
              }
-         } while (opcao < 0 || opcao > 4);
+         } while(opcao < 0 || opcao > 4);
  
-         switch (opcao) {
+         switch (opcao){
              case 1:
                  LimpaTela();
                  filamusic(&historico); // <-- Chama a função que usa a fila
@@ -56,22 +56,31 @@
                  LimpaTela();
                  printf("Funcionalidade 'Criar playlists' ainda não implementada.\n\n");
                  break;
-             case 4: {
+             case 4:{
                  int yorn;
-                 do {
-                     mostrarPilha(&historico);
-                     printf("Deseja apagar a música que está no topo?\n");
-                     printf("1 - Sim\n2 - Não/Sair\n");
-                     scanf("%i", &yorn);
-                     if (yorn < 1 || yorn > 2) {
-                         printf("Digite uma opção válida!\n");
-                     }
-                 } while (yorn < 1 || yorn > 2);
+                 do{
+                    LimpaTela();
+                    mostrarPilha(&historico);
+                    printf("Deseja apagar a música que está no topo?\n");
+                    printf("1 - Sim\n2 - Não/Sair\n");
+                    scanf("%i", &yorn);
+                    if (yorn < 1 || yorn > 2) {
+                        printf("Digite uma opção válida!\n");
+                    }
+                 } while(yorn < 1 || yorn > 2);
  
                  if (yorn == 1) {
-                     pop(&historico);
+                    if(historico.topo == NULL){
+                        LimpaTela();
+                        printf("O histórico de músicas já está vazio!\n");
+                        break;
+                    }else{
+                        LimpaTela();
+                        pop(&historico);
+                    }
+                 }else{
+                    LimpaTela();
                  }
-                 LimpaTela();
                  break;
              }
              case 0:
@@ -79,7 +88,7 @@
                  break;
          }
  
-     } while (opcao != 0);
+     } while(opcao != 0);
  
      return EXIT_SUCCESS;
  }
