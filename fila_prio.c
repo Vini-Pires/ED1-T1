@@ -1,4 +1,4 @@
-#include "headers/fila.h"
+#include "fila_prio.h"
 
 // Ordena as músicas por prioridade decrescente
 void ordenarPorPrioridade(Musica *lista, int total) {

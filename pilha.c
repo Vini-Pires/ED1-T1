@@ -1,13 +1,6 @@
-#include "headers/pilha.h"
-#include "headers/main.h"
+#include "pilha.h"
+#include "main.h"
 
-void LimpaTela(){ // FUNÇÃO PARA LIMPAR O CONSOLE (ORGANIZAÇÃO)
-  #ifdef _WIN32
-  system("cls");
-  #else
-  system("clear");
-  #endif
-}
 
 // Inicializa uma pilha vazia
 void inicializarPilha(Pilha* pilha){

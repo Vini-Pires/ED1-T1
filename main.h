@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
+#include <dirent.h>
 
 // Tamanho fixo usado para nomes
 #define NOME_TAM 100
