@@ -1,28 +1,29 @@
-main: main.o
-	@echo "Gerando arquivos executável"
-	gcc *.o -o main
+SRC=./src/output/output_o/*.o
+EXTRA_FLAGS=-Wall -Wextra -g3 -lm
+BIN=./src/output/main
+OUTPUT=./src/output
+OUTPUT_O=$(OUTPUT)/output_o
+
+
+all: main.o fila.o pilha.o
+	@echo "Gerando arquivos executável";
+	gcc $(SRC) -g $(EXTRA_FLAGS) -o $(BIN);
 
 main.o: main.c
-	@echo "Compilando e gerando objetos"
-	gcc -c *.c
+	@if [ ! -d $(OUTPUT) ]; then mkdir $(OUTPUT); fi;
+	@if [ ! -d $(OUTPUT_O) ]; then mkdir $(OUTPUT_O); fi;
+	@echo "Compilando e gerando objetos";
+	gcc -c main.c -o $(OUTPUT_O)/main.o;
 
-clean: 
+pilha.o: ./src/pilha.c
+	gcc -c ./src/pilha.c -o $(OUTPUT_O)/pilha.o;
+
+fila.o: ./src/fila.c
+	gcc -c ./src/fila.c -o $(OUTPUT_O)fila.o;
+
+clean:
 	@echo "Apagando objetos e executáveis antigos..."
-	rm -f *.o main
-#	del /f *.o
+	@rm -r $(OUTPUT);
 
-run: 
-	./main
-
-# LINUX
-# MAKE (CRIA E PREPARA ARQUIVOS .O)
-# MAKE RUN (EXECUTA)
-# MAKE CLEAN (LIMPA ARQUIVOS .O)
-# ls (VERIFICAR ARQUIVOS)
-
-
-# WINDOWS
-# mingw32-make (CRIA E PREPARA ARQUIVOS .O)
-# mingw32-make run (EXECUTA)
-# mingw32-make clean (LIMPA ARQUIVOS .O)
-# ls (VERIFICAR ARQUIVOS)
+run:
+	@echo ""; $(BIN); @echo "";

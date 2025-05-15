@@ -10,9 +10,9 @@
 
 // Estrutura que representa uma música
 typedef struct {
-    char nomemusic[NOME_TAM];   // Nome da música
-    char playlist[NOME_TAM];    // Nome da playlist
-    int prioridade;             // Prioridade da música
+  char nomemusic[NOME_TAM];   // Nome da música
+  char playlist[NOME_TAM];    // Nome da playlist
+  int prioridade;             // Prioridade da música
 } Musica;
 
 #endif // MAIN_H
