@@ -1,77 +1,87 @@
-void LimpaTela(){ // FUNÇÃO PARA LIMPAR O CONSOLE (ORGANIZAÇÃO)
-  #ifdef _WIN32
-  system("cls");
-  #else
-  system("clear");
-  #endif
+#include "menu.h"
+#include "main.h"
+
+void limparTela(void) {
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
 }
 
-void ExibirMenu () {
+void exibirMenu(Pilha *historico) {
+    int opcao;
+    do {
+        limparTela();
+        printf("=====================================\n");
+        printf("         Bem-vindo ao SO TRACK BOA!\n");
+        printf("=====================================\n\n");
+        printf("1 - Adicionar música\n");
+        printf("2 - Músicas recentes (Histórico)\n");
+        printf("0 - Sair\n");
+        printf("Opção: ");
 
+        scanf("%d", &opcao);
+        getchar(); // Limpa o '\n' do buffer
+
+        switch(opcao) {
+            case 1:
+                limparTela();
+                exibirMusica(historico);
+                break;
+            case 2:
+                limparTela();
+                exibirHistorico(historico);
+                break;
+            case 0:
+                printf("\nEncerrando o programa SO TRACK BOA!\n");
+                break;
+            default:
+                printf("\nOpção inválida! Tente novamente.\n");
+                printf("Pressione ENTER para continuar...");
+                getchar();
+                break;
+        }
+    } while (opcao != 0);
 }
 
-// do {
-//   printf("=====================================\n");
-//   printf("  Bem-vindo ao SO TRACK BOA!\n");
-//   printf("=====================================\n\n");
-//   printf("1 - Adicionar/Remover música\n");
-//   printf("2 - Mostrar playlists\n");
-//   printf("3 - Criar playlists\n");
-//   printf("4 - Músicas recentes\n");
-//   printf("0 - Sair\n");
-//   printf("Opcão: ");
+void exibirMusica(Pilha *historico) {
 
-//   do{
-//     setbuf(stdin, NULL);
-//     scanf("%i", &opcao);
-//     if (opcao < 0 || opcao > 4){
-//       printf("Você não digitou uma opção válida, tente novamente!\n");
-//     }
-//   } while(opcao < 0 || opcao > 4);
+    // Aqui você deve chamar a função que gerencia a fila de reprodução e inserção de músicas
+    // Como você tem a função filamusic no seu código, vamos chamá-la aqui.
 
-//   switch (opcao){
-//     case 1:
-//     LimpaTela();
-//     filamusic(&historico); // <-- Chama a função que usa a fila
-//     break;
-//     case 2:
-//     LimpaTela();
-//     printf("Funcionalidade 'Mostrar playlists' ainda não implementada.\n\n");
-//     break;
-//     case 3:
-//     LimpaTela();
-//     printf("Funcionalidade 'Criar playlists' ainda não implementada.\n\n");
-//     break;
-//     case 4:{
-//       int yorn;
-//       do{
-//         LimpaTela();
-//         mostrarPilha(&historico);
-//         printf("Deseja apagar a música que está no topo?\n");
-//         printf("1 - Sim\n2 - Não/Sair\n");
-//         scanf("%i", &yorn);
-//         if (yorn < 1 || yorn > 2) {
-//           printf("Digite uma opção válida!\n");
-//         }
-//       } while(yorn < 1 || yorn > 2);
+    filamusic(historico);
 
-//       if (yorn == 1) {
-//         if(historico.topo == NULL){
-//           LimpaTela();
-//           printf("O histórico de músicas já está vazio!\n");
-//           break;
-//         }else{
-//           LimpaTela();
-//           pop(&historico);
-//         }
-//       }else{
-//         LimpaTela();
-//       }
-//       break;
-//     }
-//     case 0:
-//     printf("Encerrando o programa SO TRACK BOA!\n\n");
-//     break;
-//   }
+    printf("Pressione ENTER para voltar ao menu...");
+    getchar();
+}
 
-// } while(opcao != 0);
+void exibirHistorico(Pilha *historico) {
+    if (historico->topo == NULL) {
+        printf("O histórico de músicas está vazio.\n");
+    } else {
+        mostrarPilha(historico);
+
+        printf("\nDeseja remover a música do topo do histórico?\n");
+        printf("1 - Sim\n2 - Não\n");
+        int escolha = 0;
+
+        do {
+            scanf("%d", &escolha);
+            getchar();
+
+            if (escolha == 1) {
+                pop(historico);
+                printf("Música removida do histórico.\n");
+            } else if (escolha == 2) {
+                printf("Nenhuma música foi removida.\n");
+            } else {
+                printf("Opção inválida. Digite 1 para Sim ou 2 para Não.\n");
+            }
+        } while (escolha != 1 && escolha != 2);
+    }
+
+    printf("Pressione ENTER para voltar ao menu...");
+    getchar();
+}
+

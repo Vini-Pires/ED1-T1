@@ -1,5 +1,5 @@
-#ifndef FILA_H
-#define FILA_H
+#ifndef FILA_playlist_h
+#define FILA_playlist_h
 
 #include "main.h"
 
