@@ -30,7 +30,7 @@ void pushPlaylist (PLAYLIST *f, char musica[]) {
 }
 
 void popPlaylist (PLAYLIST *f) {
-  if (isEmptyPlaylist) {
+  if (isEmptyPlaylist(f)) {
     printf("Playlist Vazia\n");
     return;
   }

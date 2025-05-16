@@ -16,13 +16,15 @@
 #include "pilha.h"
 #include "fila_prio.h"
 #include "fila_playlist.h"
+#include "menu.h"
 
 int main(void) {
-  int opcao;
+
   Pilha historico;
 
   inicializarPilha(&historico);
 
+  exibirMenu(&historico);
 
 
   return EXIT_SUCCESS;
