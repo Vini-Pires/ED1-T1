@@ -16,10 +16,8 @@ void exibirMenu(Pilha *historico) {
         printf("=====================================\n");
         printf("         Bem-vindo ao SO TRACK BOA!\n");
         printf("=====================================\n\n");
-        printf("1 - Adicionar/Remover música\n");
-        printf("2 - Mostrar playlists\n");
-        printf("3 - Criar playlists\n");
-        printf("4 - Músicas recentes (Histórico)\n");
+        printf("1 - Adicionar música\n");
+        printf("2 - Músicas recentes (Histórico)\n");
         printf("0 - Sair\n");
         printf("Opção: ");
 
@@ -32,18 +30,6 @@ void exibirMenu(Pilha *historico) {
                 exibirMusica(historico);
                 break;
             case 2:
-                limparTela();
-                printf("Funcionalidade 'Mostrar playlists' ainda não implementada.\n");
-                printf("Pressione ENTER para voltar ao menu...");
-                getchar();
-                break;
-            case 3:
-                limparTela();
-                printf("Funcionalidade 'Criar playlists' ainda não implementada.\n");
-                printf("Pressione ENTER para voltar ao menu...");
-                getchar();
-                break;
-            case 4:
                 limparTela();
                 exibirHistorico(historico);
                 break;
@@ -99,16 +85,3 @@ void exibirHistorico(Pilha *historico) {
     getchar();
 }
 
-void exibirPlaylists(PLAYLIST *playlists, int quantidade) {
-    if (quantidade == 0) {
-        printf("Nenhuma playlist disponível.\n");
-    } else {
-        printf("=== Playlists Disponíveis ===\n");
-        for (int i = 0; i < quantidade; i++) {
-            printf("%d - %s (Total de músicas: %d)\n", i + 1, playlists[i].nome_playlist, playlists[i].qntd_elementos);
-        }
-    }
-
-    printf("\nPressione ENTER para voltar ao menu...");
-    getchar();
-}
